@@ -1,0 +1,8 @@
+# IntelliJ
+**/.idea/
+**/out/
+
+# ant properties files
+ane/build.properties
+demo/build.properties
+sdk.properties

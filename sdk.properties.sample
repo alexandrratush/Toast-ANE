@@ -1,0 +1,12 @@
+# The location of the SDKs.
+AIRSDK_HOME = ${env.AIRSDK_HOME}
+JAVA_HOME = ${env.JAVA_HOME}
+ANDROID_HOME = ${env.ANDROID_HOME}
+
+# config files
+air_mobile_config = ${AIRSDK_HOME}/frameworks/airmobile-config.xml
+
+# path to compiler jars
+compc = ${AIRSDK_HOME}/lib/compc-cli.jar
+mxmlc = ${AIRSDK_HOME}/lib/mxmlc-cli.jar
+adt = ${AIRSDK_HOME}/lib/adt.jar
