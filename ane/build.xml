@@ -1,0 +1,98 @@
+<project name="Build ane" default="build" basedir=".">
+
+	<property environment="env"/>
+	<property file="../sdk.properties"/>
+	<property file="build.properties"/>
+	
+	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask"/>
+	
+	<property name="temp_path" value="temp"/>
+	<property name="temp_java_libs_path" value="${temp_path}/java_libs"/>
+	<property name="temp_swc_libs_path" value="${temp_path}/swc_libs"/>
+	<property name="temp_ane_path" value="${temp_path}/ane"/>
+	<property name="temp_ane_android_path" value="${temp_ane_path}/android"/>
+	<property name="temp_ane_default_path" value="${temp_ane_path}/default"/>
+	<property name="extension_swc" value="extension.swc"/>
+	<property name="extension_jar" value="extension.jar"/>
+	<property name="library_swf" value="library.swf"/>
+	
+	<target name="change_extension_xml">
+		<xmltask source="${extension_xml}" dest="${extension_xml}">
+			<replace path="/:extension/:id/text()" withText="${extension_id}"/>
+		</xmltask>
+	</target>
+	
+	<target name="make_temp_folders" description="Making temp folders">
+		<delete dir="${extension_path}"/>
+		<delete dir="${temp_path}"/>
+		<mkdir dir="${extension_path}"/>
+		<mkdir dir="${temp_path}"/>
+		<mkdir dir="${temp_java_libs_path}"/>
+		<mkdir dir="${temp_swc_libs_path}"/>
+		<mkdir dir="${temp_ane_path}"/>
+		<mkdir dir="${temp_ane_android_path}"/>
+		<mkdir dir="${temp_ane_default_path}"/>
+	</target>
+	
+	<target name="compile_swc" description="Making swc lib">
+		<java jar="${compc}" fork="true" failonerror="true">
+			<arg value="-load-config=${air_mobile_config}"/>
+			<arg value="-swf-version=${swf_version}"/>
+			<arg value="-source-path+=${as3_source_path}"/>
+			<arg value="-include-sources+=${as3_source_path}"/>
+			<arg value="-output=${temp_swc_libs_path}/${extension_swc}"/>
+		</java>
+	</target>
+	
+	<target name="compile_jar" description="Making jar lib">
+		<javac compiler="${java_compiler}"
+			source="${javac_source}"
+			target="${javac_target}"
+			bootclasspath="${rt_jar}"
+			failonerror="true"
+			destdir="${temp_java_libs_path}"
+			includeantruntime="false">
+			<src path="${android_source_path}"/>
+            <classpath>
+                <pathelement location="${android_jar}"/>
+                <pathelement location="${fre_jar}"/>
+            </classpath>
+		</javac>
+		<jar basedir="${temp_java_libs_path}" destfile="${temp_ane_android_path}/${extension_jar}"/>
+	</target>
+	
+	<target name="copy_files" description="Files operations">
+		<unzip src="${temp_swc_libs_path}/${extension_swc}" dest="${temp_swc_libs_path}"/>
+		<copy file="${extension_xml}" tofile="${temp_ane_path}/${extension_xml}"/>
+		<copy file="${temp_swc_libs_path}/${library_swf}" tofile="${temp_ane_android_path}/${library_swf}"/>
+		<move file="${temp_swc_libs_path}/${library_swf}" tofile="${temp_ane_default_path}/${library_swf}"/>
+		<move file="${temp_swc_libs_path}/${extension_swc}" tofile="${temp_ane_path}/${extension_swc}"/>
+	</target>
+	
+	<target name="build_ane" description="Building ane">
+		<echo message="Building ane file"/>
+		<java jar="${adt}" dir="${basedir}" fork="true" failonerror="true">
+			<arg value="-package"/>
+			<arg value="-target"/>
+			<arg value="ane"/>
+			<arg value="${extension_path}/${extension_name}"/>
+			<arg value="${temp_ane_path}/${extension_xml}"/>
+			<arg line="-swc"/>
+			<arg line="${temp_ane_path}/${extension_swc}"/>
+			<arg line="-platform Android-ARM -C ${temp_ane_android_path} ."/>
+			<arg line="-platform Android-x86 -C ${temp_ane_android_path} ."/>
+			<arg line="-platform default -C ${temp_ane_default_path} ."/>
+		</java>
+	</target>
+	
+	<target name="clear" description="Delete temp folders and files">
+		<delete dir="${temp_path}"/>
+	</target>
+	
+	<target name="copy_ane" description="Copy ane to demo projects">
+ 		<copy file="${extension_path}/${extension_name}" tofile="${demo_project_ane_path}/${extension_name}"/>
+ 	</target>
+	
+	<target name="build" depends="make_temp_folders, compile_swc, compile_jar, copy_files, build_ane, clear, copy_ane"/>
+
+</project>

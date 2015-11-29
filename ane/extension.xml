@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<extension xmlns="http://ns.adobe.com/air/extension/15.0">
+	<id>com.aratush.ane.Toast</id>
+	<versionNumber>1</versionNumber>
+	<platforms>
+		<platform name="Android-ARM">
+			<applicationDeployment>
+				<nativeLibrary>extension.jar</nativeLibrary>
+				<initializer>com.aratush.ane.toast.ToastExtension</initializer>
+				<finalizer>com.aratush.ane.toast.ToastExtension</finalizer>
+			</applicationDeployment>
+		</platform>
+		<platform name="Android-x86">
+			<applicationDeployment>
+				<nativeLibrary>extension.jar</nativeLibrary>
+				<initializer>com.aratush.ane.toast.ToastExtension</initializer>
+				<finalizer>com.aratush.ane.toast.ToastExtension</finalizer>
+			</applicationDeployment>
+		</platform>
+		<platform name="default"> 
+            <applicationDeployment/> 
+        </platform> 
+	</platforms>
+</extension>
