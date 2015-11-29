@@ -1,0 +1,83 @@
+<project name="Build and install demo project" default="android" basedir=".">
+
+	<property environment="env"/>
+	<property file="../sdk.properties"/>
+	<property file="build.properties"/>
+	
+	<target name="build_android" depends="build_swf"  description="Build android apk">
+		<echo message="Packaging ${android_apk_name} with ${android_target}"/>
+		<echo message="Certificate_file: ${android_cert_path}/${android_cert_name}"/>
+		<java jar="${adt}" dir="${basedir}" fork="true" failonerror="true">
+			<arg value="-package"/>
+			<arg value="-target"/>
+			<arg value="${android_target}"/>
+			<arg value="-storetype"/>
+			<arg value="pkcs12"/>
+			<arg value="-keystore"/>
+			<arg value="${android_cert_path}/${android_cert_name}"/>
+			<arg value="-storepass"/>
+			<arg value="${android_cert_pass}"/>
+			<arg value="${output_path}/${android_apk_name}"/>
+			<arg value="${app_descriptor}"/>
+			<arg value="-C"/>
+			<arg value="${output_path}"/>
+			<arg value="${swf_name}"/>
+			<arg value="-extdir"/>
+			<arg value="${ane_path}"/>
+		</java>
+	</target>
+	
+	<target name="build_swf" description="Build swf">
+		<echo message="Building air swf"/>
+		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
+			<arg value="-load-config=${air_mobile_config}"/>
+			<arg value="-swf-version=${swf_version}"/>
+			<arg value="-source-path+=${source_path}"/>
+			<arg value="${root_class}"/>
+			<arg value="-library-path+=${libs_path}"/>
+			<arg value="-external-library-path+=${ane_path}"/>
+			<arg value="-output=${output_path}/${swf_name}"/>
+		</java>
+	</target>
+	
+	<target name="prepare" description="Prepare files">
+		<delete quiet="true" dir="${output_path}"/>
+		<copy file="${extension_path}/${extension_name}" tofile="${ane_path}/${extension_name}" overwrite="true"/>
+	</target>
+	
+	<target name="uninstallApp" description="Uninstall apk">
+		<echo message="Uninstall ${android_apk_name}"/>
+		<java jar="${adt}" dir="${basedir}" fork="true" failonerror="false">
+			<arg value="-uninstallApp"/>
+			<arg value="-platform"/>
+			<arg value="android"/>
+			<arg value="-appid"/>
+			<arg value="${appid}"/>
+		</java>
+	</target>
+	
+	<target name="installApp" depends="uninstallApp" description="Install apk to the android device">
+		<echo message="Install ${output_path}/${android_apk_name}"/>
+		<java jar="${adt}" dir="${basedir}" fork="true" failonerror="true">
+			<arg value="-installApp"/>
+			<arg value="-platform"/>
+			<arg value="android"/>
+			<arg value="-package"/>
+			<arg value="${output_path}/${android_apk_name}"/>
+		</java>
+	</target>
+	
+	<target name="launchApp" description="Launch application">
+		<echo message="Launch ${android_apk_name}"/>
+		<java jar="${adt}" dir="${basedir}" fork="true" failonerror="true">
+			<arg value="-launchApp"/>
+			<arg value="-platform"/>
+			<arg value="android"/>
+			<arg value="-appid"/>
+			<arg value="${appid}"/>
+		</java>
+	</target>
+	
+	<target name="android" depends="prepare, build_android, installApp, launchApp"/>
+
+</project>

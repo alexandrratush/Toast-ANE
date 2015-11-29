@@ -1,0 +1,17 @@
+as3_source_path = source/as3/src
+android_source_path = source/android/src
+android_lib_path = source/android/libs
+swf_version = 18
+extension_path = bin
+extension_id = com.aratush.ane.Toast
+extension_name = Toast.ane
+extension_xml = extension.xml
+
+android_jar = ${ANDROID_HOME}/platforms/android-21/android.jar
+rt_jar = ${JAVA_HOME}/jre/lib/rt.jar
+fre_jar = ${android_lib_path}/FlashRuntimeExtensions.jar
+java_compiler = javac1.7
+javac_source = 1.7
+javac_target = 1.7
+
+demo_project_ane_path = ../demo/ane

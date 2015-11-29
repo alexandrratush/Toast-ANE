@@ -1,0 +1,19 @@
+source_path = src
+libs_path = lib
+ane_path = ane
+root_class = ${source_path}/Main.as
+app_descriptor = Main-app.xml
+output_path = out/production/Demo
+swf_name = ToastDemo.swf
+swf_version = 18
+
+appid = com.aratush.ane.ToastDemo
+
+android_apk_name = ToastDemo.apk
+android_target = apk-captive-runtime
+android_cert_path = cert
+android_cert_name = android_cert.p12
+android_cert_pass = pass
+
+extension_path = ../ane/bin
+extension_name = Toast.ane
