@@ -5,6 +5,10 @@
 
 	<!--ant -DIGNORE_MOBILE_TARGET=true-->
 	<target name="build">
+		<copy file="ane/build.properties.sample" tofile="ane/build.properties"/>
+		<copy file="demo/build.properties.sample" tofile="demo/build.properties"/>
+		<copy file="sdk.properties.sample" tofile="sdk.properties"/>
+	
 		<ant dir="ane"/>
 		<ant dir="demo"/>
 	</target>
