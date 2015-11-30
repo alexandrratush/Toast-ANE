@@ -3,6 +3,7 @@
 	<property environment="env"/>
 	<property file="../sdk.properties"/>
 
+	<!--ant -DIGNORE_MOBILE_TARGET=true-->
 	<target name="build">
 		<ant dir="ane"/>
 		<ant dir="demo"/>

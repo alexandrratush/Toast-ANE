@@ -45,7 +45,7 @@
 		<copy file="${extension_path}/${extension_name}" tofile="${ane_path}/${extension_name}" overwrite="true"/>
 	</target>
 	
-	<target name="uninstallApp" description="Uninstall apk">
+	<target name="uninstallApp" description="Uninstall apk" unless="IGNORE_MOBILE_TARGET">
 		<echo message="Uninstall ${android_apk_name}"/>
 		<java jar="${adt}" dir="${basedir}" fork="true" failonerror="false">
 			<arg value="-uninstallApp"/>
@@ -56,7 +56,7 @@
 		</java>
 	</target>
 	
-	<target name="installApp" depends="uninstallApp" description="Install apk to the android device">
+	<target name="installApp" depends="uninstallApp" description="Install apk to the android device" unless="IGNORE_MOBILE_TARGET">
 		<echo message="Install ${output_path}/${android_apk_name}"/>
 		<java jar="${adt}" dir="${basedir}" fork="true" failonerror="true">
 			<arg value="-installApp"/>
@@ -67,7 +67,7 @@
 		</java>
 	</target>
 	
-	<target name="launchApp" description="Launch application">
+	<target name="launchApp" description="Launch application" unless="IGNORE_MOBILE_TARGET">
 		<echo message="Launch ${android_apk_name}"/>
 		<java jar="${adt}" dir="${basedir}" fork="true" failonerror="true">
 			<arg value="-launchApp"/>
