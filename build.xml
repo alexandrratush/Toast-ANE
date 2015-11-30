@@ -1,0 +1,11 @@
+<project name="Build" default="build" basedir=".">
+
+	<property environment="env"/>
+	<property file="../sdk.properties"/>
+
+	<target name="build">
+		<ant dir="ane"/>
+		<ant dir="demo"/>
+	</target>
+
+</project>
