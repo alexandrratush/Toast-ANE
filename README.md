@@ -14,6 +14,8 @@ Native Extension for Adobe AIR
 </extensions>
 ```
 
+####[Screenshot](screenshot.png)
+
 ####Code example:
 
 ```ActionScript
