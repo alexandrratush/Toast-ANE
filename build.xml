@@ -3,7 +3,6 @@
 	<property environment="env"/>
 	<property file="../sdk.properties"/>
 
-	<!--ant -DIGNORE_MOBILE_TARGET=true-->
 	<target name="build">
 		<copy file="ane/build.properties.sample" tofile="ane/build.properties"/>
 		<copy file="demo/build.properties.sample" tofile="demo/build.properties"/>
