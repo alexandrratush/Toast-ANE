@@ -7,7 +7,7 @@ extension_id = com.aratush.ane.Toast
 extension_name = Toast.ane
 extension_xml = extension.xml
 
-android_jar = ${ANDROID_HOME}/platforms/android-21/android.jar
+android_jar = ${ANDROID_HOME}/platforms/android-24/android.jar
 rt_jar = ${JAVA_HOME}/jre/lib/rt.jar
 fre_jar = ${android_lib_path}/FlashRuntimeExtensions.jar
 java_compiler = javac1.7
