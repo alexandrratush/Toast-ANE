@@ -45,6 +45,7 @@
 	</target>
 	
 	<target name="compile_jar" description="Making jar lib">
+		<echo message="ANDROID_HOME: ${ANDROID_HOME}"/>
 		<javac compiler="${java_compiler}"
 			source="${javac_source}"
 			target="${javac_target}"
