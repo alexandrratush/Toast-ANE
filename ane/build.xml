@@ -4,7 +4,7 @@
 	<property file="../sdk.properties"/>
 	<property file="build.properties"/>
 	
-	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask"/>
+	<!--<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask"/>-->
 	
 	<property name="temp_path" value="temp"/>
 	<property name="temp_java_libs_path" value="${temp_path}/java_libs"/>
@@ -16,11 +16,11 @@
 	<property name="extension_jar" value="extension.jar"/>
 	<property name="library_swf" value="library.swf"/>
 	
-	<target name="change_extension_xml">
+	<!--<target name="change_extension_xml">
 		<xmltask source="${extension_xml}" dest="${extension_xml}">
 			<replace path="/:extension/:id/text()" withText="${extension_id}"/>
 		</xmltask>
-	</target>
+	</target>-->
 	
 	<target name="make_temp_folders" description="Making temp folders">
 		<delete dir="${extension_path}"/>
