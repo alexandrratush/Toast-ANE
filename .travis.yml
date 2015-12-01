@@ -11,6 +11,8 @@ before_script:
   - brew install caskroom/cask/brew-cask
   - brew cask install flash-player-debugger
   - brew install android-sdk
+  
+  - export "ANDROID_HOME=`/usr/local/Cellar/android-sdk/24.4.1`"
 
   # Grab SDK
   - mkdir -p air_sdk
