@@ -12,7 +12,7 @@ before_script:
   - brew cask install flash-player-debugger
   - brew install android-sdk
   
-  - ANDROID_HOME=/usr/local/opt/android-sdk
+  - ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4.1_1
 
   # Grab SDK
   - mkdir -p air_sdk
