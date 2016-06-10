@@ -2,7 +2,7 @@
 AIR_SDK_HOME = ${env.AIR_SDK_HOME}
 JAVA_HOME = ${env.JAVA_HOME}
 ANDROID_HOME = ${env.ANDROID_HOME}
-ANDROID_SDK = ${ANDROID_HOME}/platforms/android-23
+ANDROID_SDK = ${ANDROID_HOME}/platforms/android-19
 
 # config files
 airsdk_config = ${AIR_SDK_HOME}/frameworks/airmobile-config.xml
