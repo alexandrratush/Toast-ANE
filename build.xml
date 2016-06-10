@@ -9,7 +9,7 @@
 		<copy file="sdk.properties.sample" tofile="sdk.properties"/>
 	
 		<ant dir="ane"/>
-		<ant dir="demo"/>
+		<!-- <ant dir="demo"/> -->
 	</target>
 
 </project>
