@@ -1,4 +1,4 @@
-swc_version = 18
+swc_version = 26
 
 java_compiler = javac1.7
 javac_source = 1.7
