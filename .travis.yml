@@ -10,9 +10,11 @@ before_script:
   - brew install ant
   - brew install caskroom/cask/brew-cask
   - brew cask install flash-player-debugger
-  - brew install android-sdk
-  
-  - ANDROID_HOME=/usr/local/Cellar/android-sdk/24.4.1_1
+  - wget -O /usr/local/android-sdk_r23.0.2-macosx.zip https://dl.google.com/android/android-sdk_r23.0.2-macosx.zip
+  - unzip -d /usr/local /usr/local/android-sdk_r23.0.2-macosx.zip
+  - export ANDROID_HOME=/usr/local/android-sdk-macosx
+  - export PATH=$PATH:$ANDROID_HOME/tools
+  - ( sleep 1 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --all --no-ui --filter platform-tool,android-19,sysimg-19,build-tools-19.1.0,extra-android-support,sys-img-armeabi-v7a-android-19
 
   # Grab SDK
   - mkdir -p air_sdk
