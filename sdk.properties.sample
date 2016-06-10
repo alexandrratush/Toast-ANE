@@ -1,12 +1,13 @@
 # The location of the SDKs.
-FLEX_HOME = ${env.FLEX_HOME}
+AIR_SDK_HOME = ${env.AIR_SDK_HOME}
 JAVA_HOME = ${env.JAVA_HOME}
 ANDROID_HOME = ${env.ANDROID_HOME}
+ANDROID_SDK = ${ANDROID_HOME}/platforms/android-23
 
 # config files
-air_mobile_config = ${FLEX_HOME}/frameworks/airmobile-config.xml
+airsdk_config = ${AIR_SDK_HOME}/frameworks/airmobile-config.xml
 
 # path to compiler jars
-compc = ${FLEX_HOME}/lib/compc-cli.jar
-mxmlc = ${FLEX_HOME}/lib/mxmlc-cli.jar
-adt = ${FLEX_HOME}/lib/adt.jar
+compc = ${AIR_SDK_HOME}/lib/compc-cli.jar
+mxmlc = ${AIR_SDK_HOME}/lib/mxmlc-cli.jar
+adt = ${AIR_SDK_HOME}/lib/adt.jar

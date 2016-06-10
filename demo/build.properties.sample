@@ -13,7 +13,7 @@ android_apk_name = ToastDemo.apk
 android_target = apk-captive-runtime
 android_cert_path = cert
 android_cert_name = android_cert.p12
-android_cert_pass = pass
+android_cert_pass = fd
 
 extension_path = ../ane/bin
 extension_name = Toast.ane
