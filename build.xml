@@ -1,6 +1,6 @@
 <project name="Build" default="build" basedir=".">
 
-	<target name="build">	
+	<target name="build">
 		<ant dir="ane"/>
 		<ant dir="demo"/>
 	</target>
