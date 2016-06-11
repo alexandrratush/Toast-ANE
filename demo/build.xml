@@ -1,10 +1,23 @@
-<project name="Build and install demo project" default="android" basedir=".">
+<project name="Build and install demo project" default="all" basedir=".">
 
 	<property environment="env"/>
 	<property file="../sdk.properties"/>
 	<property file="build.properties"/>
+
+	<target name="all" depends="prepare, build, installApp, launchApp"/>
 	
-	<target name="build_android" depends="build_swf"  description="Build android apk">
+	<target name="build" description="Build android apk">
+		<echo message="Build air swf"/>
+		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
+			<arg value="-load-config=${airsdk_config}"/>
+			<arg value="-swf-version=${swf_version}"/>
+			<arg value="-source-path+=src"/>
+			<arg value="src/${root_class}"/>
+			<arg value="-library-path+=lib"/>
+			<arg value="-external-library-path+=ane"/>
+			<arg value="-output=${output_path}/${swf_name}"/>
+		</java>
+
 		<echo message="Packaging ${android_apk_name} with ${android_target}"/>
 		<echo message="Certificate_file: ${android_cert_path}/${android_cert_name}"/>
 		<java jar="${adt}" dir="${basedir}" fork="true" failonerror="true">
@@ -23,26 +36,13 @@
 			<arg value="${output_path}"/>
 			<arg value="${swf_name}"/>
 			<arg value="-extdir"/>
-			<arg value="${ane_path}"/>
-		</java>
-	</target>
-	
-	<target name="build_swf" description="Build swf">
-		<echo message="Building air swf"/>
-		<java jar="${mxmlc}" dir="${basedir}" fork="true" failonerror="true">
-			<arg value="-load-config=${airsdk_config}"/>
-			<arg value="-swf-version=${swf_version}"/>
-			<arg value="-source-path+=${source_path}"/>
-			<arg value="${root_class}"/>
-			<arg value="-library-path+=${libs_path}"/>
-			<arg value="-external-library-path+=${ane_path}"/>
-			<arg value="-output=${output_path}/${swf_name}"/>
+			<arg value="ane"/>
 		</java>
 	</target>
 	
 	<target name="prepare" description="Prepare files">
 		<delete quiet="true" dir="${output_path}"/>
-		<copy file="${extension_path}/${extension_name}" tofile="${ane_path}/${extension_name}" overwrite="true"/>
+		<copy file="${extension_path}/${extension_name}" tofile="ane/${extension_name}" overwrite="true"/>
 	</target>
 	
 	<target name="uninstallApp" description="Uninstall apk" unless="IGNORE_MOBILE_TARGET">
@@ -77,7 +77,5 @@
 			<arg value="${appid}"/>
 		</java>
 	</target>
-	
-	<target name="android" depends="prepare, build_android, installApp, launchApp"/>
 
 </project>

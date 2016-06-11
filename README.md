@@ -1,8 +1,9 @@
-Toast ANE (Android)[![Build Status](https://travis-ci.org/alexandrratush/Toast-ANE.svg?branch=master)](https://travis-ci.org/alexandrratush/Toast-ANE)
+Toast ANE (Android)
 =============================
 Native Extension for Adobe AIR
+[![Build Status](https://travis-ci.org/alexandrratush/Toast-ANE.svg?branch=master)](https://travis-ci.org/alexandrratush/Toast-ANE)
 
-####Using the ANE:
+###Using the ANE:
 
 * Add **[Toast.ane](https://github.com/alexandrratush/Toast-ANE/tree/master/ane/bin)** file to your air project.
 
@@ -14,9 +15,9 @@ Native Extension for Adobe AIR
 </extensions>
 ```
 
-####[Screenshot](screenshot.png)
+###[Screenshot](screenshot.png)
 
-####Code example:
+###Code example:
 
 ```ActionScript
 import com.aratush.ane.toast.DurationEnum;
@@ -35,7 +36,7 @@ if (ToastExtension.isSupported)
 }
 ```
 
-####API
+###API
 
 * `ToastExtension.isSupported` - check whether Toast extension is supported on your platform.
 * `setText()` - set the text in a Toast.

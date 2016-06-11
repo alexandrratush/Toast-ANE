@@ -1,13 +1,6 @@
 <project name="Build" default="build" basedir=".">
 
-	<property environment="env"/>
-	<property file="../sdk.properties"/>
-
-	<target name="build">
-		<copy file="ane/build.properties.sample" tofile="ane/build.properties"/>
-		<copy file="demo/build.properties.sample" tofile="demo/build.properties"/>
-		<copy file="sdk.properties.sample" tofile="sdk.properties"/>
-	
+	<target name="build">	
 		<ant dir="ane"/>
 		<ant dir="demo"/>
 	</target>
