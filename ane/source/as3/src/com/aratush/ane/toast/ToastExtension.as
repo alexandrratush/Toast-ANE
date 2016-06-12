@@ -1,6 +1,6 @@
 package com.aratush.ane.toast
 {
-    import com.aratush.ane.utils.StringUtil;
+
     import com.aratush.ane.utils.SystemUtil;
 
     import flash.events.ErrorEvent;
@@ -12,45 +12,55 @@ package com.aratush.ane.toast
     {
         public static const EXTENSION_ID:String = "com.aratush.ane.Toast";
 
-        protected var _context:ExtensionContext;
+        protected static var _context:ExtensionContext;
 
         public function ToastExtension()
         {
             if (!isSupported)
+            {
                 throw new Error("ToastExtension is not supported on this platform. Use ToastExtension.isSupported getter.");
-            _context = ExtensionContext.createExtensionContext(EXTENSION_ID, "");
-            _context.addEventListener(StatusEvent.STATUS, onStatusEventHandler);
+            }
+
         }
 
-        public function show():void
+//        public function show():void
+//        {
+//            _context.call("show");
+//        }
+//
+//        public function setText(text:String):void
+//        {
+//            if (StringUtil.isTextValid(text))
+//                _context.call("setText", text);
+//            else
+//                throw new ArgumentError("Parameter text is not valid");
+//        }
+//
+//        public function setDuration(duration:DurationEnum):void
+//        {
+//            _context.call("setDuration", duration.value);
+//        }
+//
+//        public function setGravity(gravity:GravityEnum, xOffset:int = 0, yOffset:int = 0):void
+//        {
+//            _context.call("setGravity", gravity.value, xOffset, yOffset);
+//        }
+//
+//        public function cancel():void
+//        {
+//            _context.call("cancel");
+//        }
+
+        public static function init():void
         {
-            _context.call("show");
+            if (_context == null)
+            {
+                _context = ExtensionContext.createExtensionContext(EXTENSION_ID, "");
+                _context.addEventListener(StatusEvent.STATUS, onStatusEventHandler);
+            }
         }
 
-        public function setText(text:String):void
-        {
-            if (StringUtil.isTextValid(text))
-                _context.call("setText", text);
-            else
-                throw new ArgumentError("Parameter text is not valid");
-        }
-
-        public function setDuration(duration:DurationEnum):void
-        {
-            _context.call("setDuration", duration.value);
-        }
-
-        public function setGravity(gravity:GravityEnum, xOffset:int = 0, yOffset:int = 0):void
-        {
-            _context.call("setGravity", gravity.value, xOffset, yOffset);
-        }
-
-        public function cancel():void
-        {
-            _context.call("cancel");
-        }
-
-        public function dispose():void
+        public static function dispose():void
         {
             if (_context != null)
             {
@@ -62,11 +72,9 @@ package com.aratush.ane.toast
 
         protected function onStatusEventHandler(e:StatusEvent):void
         {
-            const ERROR_EVENT:String = "error_event";
-
             switch (e.level)
             {
-                case ERROR_EVENT:
+                case "error_event:
                     dispatchEvent(new ErrorEvent(ErrorEvent.ERROR, false, false, e.code));
                     break;
                 default:
