@@ -1,6 +1,7 @@
-# Toast ANE (Android)
+# Toast ANE
 [![Build Status](https://travis-ci.org/alexandrratush/Toast-ANE.svg?branch=master)](https://travis-ci.org/alexandrratush/Toast-ANE)
 [![GitHub version](https://badge.fury.io/gh/alexandrratush%2FToast-ANE.svg)](https://badge.fury.io/gh/alexandrratush%2FToast-ANE)
+![Platform](https://img.shields.io/badge/platform-Android-orange.svg)
 ![](https://reposs.herokuapp.com/?path=alexandrratush/Toast-ANE&style=flat)
 ###### Native Extension for Adobe AIR
 ### Using the ANE:
